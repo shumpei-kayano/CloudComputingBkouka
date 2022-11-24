@@ -1,5 +1,6 @@
 <%@page contentType="text/html; charset=UTF-8" %>
 <%@include file="../header.jsp" %>
+<%int year =  (int)request.getAttribute("year"); %>
     <div class="c-pagetitle">
         <h1 class=""><a href="/kouka">削除完了</a></h1>
     </div>
@@ -8,7 +9,10 @@
     </div>
 
     <!-- 戻るボタン -->
-    <div class="p-back-btn">
-        <a href="student_list.jsp"><button type="button" class="c-btn c-btn--back">戻る</button></a>
-    </div>
+        <form action="/kouka/manage/list" method="post">
+	        <div class="p-back-btn">
+	        	<input type="hidden" value="<%= year %>" name="year">
+				<button type="submit" class="c-btn c-btn--back">戻る</button>
+	        </div>
+        </form>
 <%@include file="../footer.html" %>

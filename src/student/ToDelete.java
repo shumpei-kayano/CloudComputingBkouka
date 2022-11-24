@@ -8,20 +8,19 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import bean.Student;
 import dao.StudentDAO;
 
 /**
- * Servlet implementation class Todetail
+ * Servlet implementation class ToDelete
  */
-@WebServlet("/manage/detail")
-public class Todetail extends HttpServlet {
+@WebServlet("/manage/del")
+public class ToDelete extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public Todetail() {
+    public ToDelete() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -30,22 +29,8 @@ public class Todetail extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setCharacterEncoding("utf-8");
-		response.setCharacterEncoding("UTF-8");
-		response.setContentType("UTF-8");
-		int id = Integer.parseInt(request.getParameter("id"));
-
-		Student s = new Student();
-		StudentDAO dao=new StudentDAO();
-			try {
-				s = dao.selectOne(id);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		//学生をsetAttributeでJSPに渡す
-		  request.setAttribute("s",s);
-		  request.getRequestDispatcher("/manage/student_detail.jsp")
-			.forward(request, response);
+		// TODO Auto-generated method stub
+		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
 	/**
@@ -53,7 +38,20 @@ public class Todetail extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-//		doGet(request, response);
+		request.setCharacterEncoding("utf-8");
+		response.setCharacterEncoding("UTF-8");
+		response.setContentType("UTF-8");
+		int id = Integer.parseInt(request.getParameter("id"));
+		int year = Integer.parseInt(request.getParameter("year"));
+		StudentDAO dao=new StudentDAO();
+		try {
+			dao.delete(id);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		request.setAttribute("year", year);
+		  request.getRequestDispatcher("/manage/student_delete.jsp")
+			.forward(request, response);
 	}
 
 }

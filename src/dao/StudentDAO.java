@@ -91,4 +91,21 @@ public class StudentDAO extends DAO {
 		con.close();
 		return line;
 	}
+
+	// ----------１学生削除のdeleteメソッド---------
+	public void delete(int id) throws Exception {
+		//親のDAOクラスを利用してDB接続
+		Connection con=getConnection();
+
+		//SQLの実行
+		PreparedStatement st=con.prepareStatement("delete from student where id = ?");
+		//1番目のプレースホルダーにバインド
+		st.setInt(1, id);
+		st.executeUpdate();
+
+		//DBからの切断
+		st.close();
+		con.close();
+
+	}
 }

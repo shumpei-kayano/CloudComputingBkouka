@@ -3,6 +3,16 @@
 <%@page import="dao.StudentDAO" %>
 <% request.setCharacterEncoding("UTF-8"); %>
 <%@include file="../header.jsp" %>
+    <!-- 削除の確認コンソール -->
+    <script>
+    function beforeSubmit() {
+        if(window.confirm('本当に削除してもよろしいでしょうか？')) {
+          return true;
+        } else {
+          return false;
+        }
+      }
+</script>
     <div class="c-pagetitle">
         <h1 class=""><a href="/kouka">学生詳細 </a></h1>
     </div>
@@ -37,12 +47,17 @@
 	        </div>
         </form>
         <!-- 削除ボタン -->
-        <div class="p-back-btn">
-            <a href="student_delete.jsp"><button type="button" class="c-btn c-btn--back">削除</button></a>
-        </div>
+        <form action="/kouka/manage/del" method="post" onsubmit="return beforeSubmit()">
+	        <div class="p-back-btn">
+		        <input type="hidden" value="<%= s.getId() %>" name="id">
+		        <input type="hidden" value="<%= s.getYear() %>" name="year">
+	            <button type="submit" class="c-btn c-btn--back">削除</button>
+	        </div>
+        </form>
         <!-- 確認ボタン -->
         <div class="p-register-btn">
             <button type="submit" class="c-btn c-btn--register">確認</button>
         </div>
     </div>
+
 <%@include file="../footer.html" %>
