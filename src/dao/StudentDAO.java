@@ -54,9 +54,6 @@ public class StudentDAO extends DAO {
 		String name = student.getName();
 //		nameをUTF-8に変換
 		String cname = new String(name.getBytes("UTF-8"), "UTF-8");
-		System.out.println(number_of_row);
-		System.out.println(cname);
-		System.out.println(student.getYear());
 //		プリペアドステートメントの作成
 		PreparedStatement st2=con.prepareStatement("insert into student values(?, ?, ?)");
 //		値のバインド

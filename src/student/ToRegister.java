@@ -41,6 +41,9 @@ public class ToRegister extends HttpServlet {
 	 *kouka/regisuterへpostアクセスの時、DB登録処理をしてリダイレクト
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		//post送信されたリクエスト情報をutf-8にエンコード
+		request.setCharacterEncoding("utf-8");
+		response.setContentType("UTF-8");
 		PrintWriter out=response.getWriter();
 		try{
 				String name = request.getParameter("name");
