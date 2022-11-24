@@ -2,7 +2,6 @@ package student;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -14,16 +13,16 @@ import bean.Student;
 import dao.StudentDAO;
 
 /**
- * Servlet implementation class ToList
+ * Servlet implementation class ToUpdate
  */
-@WebServlet("/manage/list")
-public class ToList extends HttpServlet {
+@WebServlet("/manage/update")
+public class ToUpdate extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ToList() {
+    public ToUpdate() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -33,49 +32,44 @@ public class ToList extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-//		  String url = "/kouka";
-//		  response.sendRedirect(url);
-		request.getRequestDispatcher("/manage/student_manage.jsp")
-		.forward(request, response);
+		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		//post送信されたリクエスト情報をutf-8にエンコード
 		request.setCharacterEncoding("utf-8");
 		response.setCharacterEncoding("UTF-8");
 		response.setContentType("UTF-8");
 		//		PrintWriterよりも前にutf変換しないと？に文字化けする
 		PrintWriter out=response.getWriter();
 		try{
-			//		post送信のyearを取得
+				String name = request.getParameter("name");
 				int year = Integer.parseInt(request.getParameter("year"));
+				int id = Integer.parseInt(request.getParameter("id"));
 
-				//		入学年度は設定されているかチェック
-				if(year == 0){
-					  String url = "/kouka/manage/list";
-					  response.sendRedirect(url);
-					System.out.println("yearを設定していません。");
-				}
-				//	StudentDAOでselectメソッドで指定年度の学生リストを取得
+		//		StudentBeanを利用し、値の設定
+				Student s = new Student();
+				s.setId(id);
+				s.setName(name);
+				s.setYear(year);
+
+		//		StudentDAOのupdateメソッドでデータを更新する
 				StudentDAO dao=new StudentDAO();
-				List<Student> list =dao.selectAll(year);
+				int line=dao.update(s);
 
-				//	データがない場合はトップ画面へリダイレクト
-				if(list == null) {
-					  String url = "/kouka";
-					  response.sendRedirect(url);
-					System.out.println("リストがありません。");
+				if(line>0) {
+					//	更新完了画面へ
+					  request.setAttribute("year",year);
+					  request.getRequestDispatcher("/manage/student_comp2.jsp")
+						.forward(request, response);
 				}
-
-				//学生リストをsetAttributeでJSPに渡す
-				  request.setAttribute("list", list);
-				  request.getRequestDispatcher("/manage/student_list.jsp")
-					.forward(request, response);
 		} catch (Exception e) {
 			e.printStackTrace(out);
 		}
+
 	}
 
 }

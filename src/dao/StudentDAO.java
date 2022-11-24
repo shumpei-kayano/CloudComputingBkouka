@@ -108,4 +108,25 @@ public class StudentDAO extends DAO {
 		con.close();
 
 	}
+
+	// ---------更新を行うupdateメソッド---------
+	public int update(Student student) throws Exception {
+		Connection con=getConnection();
+
+		String name = student.getName();
+//		nameをUTF-8に変換
+		String cname = new String(name.getBytes("UTF-8"), "UTF-8");
+//		プリペアドステートメントの作成
+		PreparedStatement st=con.prepareStatement("UPDATE student SET student_name = ?, entrance_year = ? where id = ?");
+//		値のバインド
+		st.setString(1, cname);
+		st.setInt(2, student.getYear());
+		st.setInt(3, student.getId());
+
+		int line=st.executeUpdate();
+
+		st.close();
+		con.close();
+		return line;
+	}
 }

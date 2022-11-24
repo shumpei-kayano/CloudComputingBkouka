@@ -19,11 +19,11 @@
             <%
             /* サーブレットからgetAttributeで学生情報を受け取る */
            Student s = (Student)request.getAttribute("s");%>
-    <form action="#" method="post">
+    <form action="/kouka/manage/confirm" method="post">
         <div class="c-container c-container--tate">
             <!-- 入学年度セレクトボックス -->
-            <select class="form-select form-select-lg mb-5" aria-label="Default select example">
-                <option selected>入学年度を選択してください</option>
+            <select class="form-select form-select-lg mb-5" aria-label="Default select example" name="year" required>
+                <option selected value="">入学年度を選択してください</option>
                 <option value="2019">2019</option>
                 <option value="2020">2020</option>
                 <option value="2021">2021</option>
@@ -33,8 +33,13 @@
             <div class="input-group flex-nowrap mb-5 p-student-form">
                 <span class="input-group-text" id="addon-wrapping">学生氏名</span>
                 <input type="text" class="form-control" placeholder="大原 太郎" aria-label="Username"
-                    aria-describedby="addon-wrapping" value="<%= s.getName()%>">
+                    aria-describedby="addon-wrapping" value="<%= s.getName()%>" name="name">
             </div>
+            <input type="hidden" value="<%= s.getId() %>" name="id">
+            <!-- 確認ボタン -->
+	        <div class="p-register-btn" style="text-align:right;margin-right:0">
+	            <button type="submit" class="c-btn c-btn--register">確認</button>
+	        </div>
         </div>
     </form>
 
@@ -48,16 +53,13 @@
         </form>
         <!-- 削除ボタン -->
         <form action="/kouka/manage/del" method="post" onsubmit="return beforeSubmit()">
-	        <div class="p-back-btn">
+	        <div class="p-back-btn" style="margin-right:318px">
 		        <input type="hidden" value="<%= s.getId() %>" name="id">
 		        <input type="hidden" value="<%= s.getYear() %>" name="year">
 	            <button type="submit" class="c-btn c-btn--back">削除</button>
 	        </div>
         </form>
-        <!-- 確認ボタン -->
-        <div class="p-register-btn">
-            <button type="submit" class="c-btn c-btn--register">確認</button>
-        </div>
+
     </div>
 
 <%@include file="../footer.html" %>
