@@ -1,15 +1,17 @@
 package bean;
 
-public class Test implements java.io.Serializable {
+public class Score implements java.io.Serializable {
 
 	private int id;
 	private int studentId;
-	private int studentClass;
+	private int times;
 	private int rika;
 	private int kokugo;
 	private int eigo;
 	private int syakai;
 	private int sugaku;
+
+	private Student student;
 
 //	---------ゲッター--------
 	public int getId() {
@@ -18,24 +20,33 @@ public class Test implements java.io.Serializable {
 	public int getStudentId() {
 		return studentId;
 	}
-	public int getStudentClass() {
-		return studentClass;
+	public int getTimes() {
+		return times;
 	}
-	public int rika() {
+	public int getRika() {
 		return rika;
 	}
-	public int kokugo() {
+	public int getKokugo() {
 		return kokugo;
 	}
-	public int eigo() {
+	public int getEigo() {
 		return eigo;
 	}
-	public int syakai() {
+	public int getSyakai() {
 		return syakai;
 	}
-	public int sugaku() {
+	public int getSugaku() {
 		return sugaku;
 	}
+	public Student getStudent(){
+		return student;
+	}
+//	public String getName() {
+//		return name;
+//	}
+//	public int getYear() {
+//		return year;
+//	}
 //	---------セッター--------
 	public void setId(int id) {
 		this.id=id;
@@ -43,8 +54,8 @@ public class Test implements java.io.Serializable {
 	public void setStudentId(int studentId) {
 		this.studentId=studentId;
 	}
-	public void setStudentClass(int studentClass) {
-		this.studentClass=studentClass;
+	public void setTimes(int times) {
+		this.times=times;
 	}
 	public void setRika(int rika) {
 		this.rika=rika;
@@ -61,4 +72,13 @@ public class Test implements java.io.Serializable {
 	public void setSugaku(int sugaku) {
 		this.sugaku=sugaku;
 	}
+	public void setStudent(Student student) {
+		this.student=student;
+	}
+//	public void setName(String name) {
+//		this.name=name;
+//	}
+//	public void setYear(int year) {
+//		this.year=year;
+//	}
 }

@@ -14,7 +14,7 @@
         </div>
         <%-- 成績照会 --%>
         <div class="c-btn-container c-block">
-            <a href="score/score_search.jsp"><button type="button" class="c-btn c-btn--bigger c-btn--score">成績照会</button></a>
+            <a href="/kouka/score"><button type="button" class="c-btn c-btn--bigger c-btn--score">成績照会</button></a>
         </div>
     </div>
 <%@include file="footer.html" %>

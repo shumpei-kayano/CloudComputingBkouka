@@ -12,7 +12,7 @@
         <div class="c-container c-container--tate">
             <!-- 入学年度セレクトボックス -->
             <select class="form-select form-select-lg mb-5" aria-label="Default select example" name="year" required>
-                <option selected>入学年度を選択してください</option>
+                <option selected value="">入学年度を選択してください</option>
                 <%
                 /*   今現在の年度から４年分をループ させる*/
                 for(int i = year-3 ; i <= year; i++){

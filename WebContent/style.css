@@ -656,4 +656,7 @@ body {
   height: 50px;
   text-align: center;
 }
+td input {
+	font-size:0.9rem;
+}
 </style>

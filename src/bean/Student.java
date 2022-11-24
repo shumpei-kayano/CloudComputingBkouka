@@ -6,6 +6,8 @@ public class Student implements java.io.Serializable {
 	private String name;
 	private int year;
 
+	private Score score;
+
 //	---------ゲッター-----------
 	public int getId() {
 		return id;
@@ -15,6 +17,9 @@ public class Student implements java.io.Serializable {
 	}
 	public int getYear() {
 		return year;
+	}
+	public Score getScore() {
+		return score;
 	}
 
 //	---------セッター----------
@@ -26,5 +31,8 @@ public class Student implements java.io.Serializable {
 	}
 	public void setYear(int year) {
 		this.year=year;
+	}
+	public void setScore(Score score) {
+		this.score=score;
 	}
 }
