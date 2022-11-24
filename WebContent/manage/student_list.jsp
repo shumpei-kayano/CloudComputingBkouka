@@ -23,7 +23,7 @@
 	            <tr>
 	                <td><%=s.getYear() %></td>
 	                <td><%=s.getName() %></td>
-	                <td><a href="student_detail.jsp?id=<%= s.getId() %>"><button type="button" class="btn btn-primary">詳細</button></a></td>
+	                <td><a href="/kouka/manage/detail?id=<%= s.getId() %>"><button type="button" class="btn btn-primary">詳細</button></a></td>
 	            </tr>
 
           <%  } %>
@@ -32,6 +32,6 @@
 
     <!-- 戻るボタン -->
     <div class="p-back-btn">
-        <a href="student_manage.jsp"><button type="button" class="c-btn c-btn--back">戻る</button></a>
+        <a href="/kouka/manage/list"><button type="button" class="c-btn c-btn--back">戻る</button></a>
     </div>
 <%@include file="../footer.html" %>

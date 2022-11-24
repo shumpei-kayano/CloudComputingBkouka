@@ -62,8 +62,6 @@ public class ToList extends HttpServlet {
 				StudentDAO dao=new StudentDAO();
 				List<Student> list =dao.selectAll(year);
 
-				//ここでのlistには確実にデータが入っている。。。
-
 				//	データがない場合はトップ画面へリダイレクト
 				if(list == null) {
 					  String url = "/kouka";

@@ -10,8 +10,32 @@ import bean.Student;
 
 public class StudentDAO extends DAO {
 
+	// ----------１学生取得のselectOneメソッド---------
+	public Student selectOne(int id) throws Exception {
+		//親のDAOクラスを利用してDB接続
+		Connection con=getConnection();
 
-	// ----------検索を行うselectAllメソッド---------
+		//SQLの実行
+		PreparedStatement st=con.prepareStatement("select * from student where id = ?");
+		//1番目のプレースホルダーにバインド
+		st.setInt(1, id);
+		ResultSet rs=st.executeQuery();
+		Student s=new Student();
+		// StudentBeanを利用して設定
+		if (rs.next()) {
+			s.setId(rs.getInt("id"));
+			s.setName(rs.getString("student_name"));
+			s.setYear(rs.getInt("entrance_year"));
+		}
+
+		//DBからの切断
+		st.close();
+		con.close();
+
+		return s;
+	}
+
+	// ----------指定年度学生取得のselectAllメソッド---------
 	public List<Student> selectAll(int entranceYear) throws Exception {
 		//StudentBeanを利用してStudent型の配列を作成
 		List<Student> list=new ArrayList<>();
