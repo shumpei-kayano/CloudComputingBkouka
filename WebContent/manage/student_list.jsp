@@ -2,9 +2,8 @@
 <%@page import="bean.Student" %>
 <%@page import="dao.StudentDAO" %>
 <%@ page import="java.util.List" %>
-<%@include file="../header.jsp" %>
 <% request.setCharacterEncoding("UTF-8"); %>
-
+<%@include file="../header.jsp" %>
     <div class="c-pagetitle">
         <h1 class=""><a href="/kouka">学生一覧</a></h1>
     </div>

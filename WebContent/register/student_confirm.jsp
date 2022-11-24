@@ -28,7 +28,7 @@
             <a href="/kouka/register"><button type="button" class="c-btn c-btn--back">戻る</button></a>
         </div>
         <!-- 登録ボタン -->
-        <form action="/kouka/register/comp" method="post">
+        <form action="/kouka/register" method="post">
         	<input type="hidden" value="<%= request.getParameter("year") %>" name="year">
         	<input type="hidden" value="<%= request.getParameter("class") %>" name="class">
         	<input type="hidden" value="<%= request.getParameter("name") %>" name="name">

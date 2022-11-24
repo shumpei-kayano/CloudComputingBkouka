@@ -43,6 +43,10 @@ public class ToList extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("utf-8");
+		response.setCharacterEncoding("UTF-8");
+		response.setContentType("UTF-8");
+		//		PrintWriterよりも前にutf変換しないと文字化けする
 		PrintWriter out=response.getWriter();
 		try{
 			//		post送信のyearを取得
@@ -68,7 +72,6 @@ public class ToList extends HttpServlet {
 				}
 
 				//学生リストをsetAttributeでJSPに渡す
-				request.setCharacterEncoding("UTF-8");
 				  request.setAttribute("list", list);
 				  request.getRequestDispatcher("/manage/student_list.jsp")
 					.forward(request, response);
