@@ -8,6 +8,7 @@
         <h1 class=""><a href="/kouka">成績一覧</a></h1>
     </div>
 	<p style="text-align:center;font-size:1.5em;color:red;">成績入力がない場合は0点で表示されます。</p>
+   <form action="/kouka/score/register" method="post">
     <div class="c-container--table">
         <table class="table table-striped">
             <tr>
@@ -21,18 +22,18 @@
                 <th>数学</th>
             </tr>
    <%
-            /* サーブレットからgetAttributeで学生リストを受け取る */
+            /* サーブレットからgetAttributeで成績リストを受け取る */
             List<Student> list = (List<Student>)request.getAttribute("list");%>
            <% for(Student s: list) { %>
             <tr>
                 <td><%=s.getYear() %></td>
                 <td>第<%=s.getScore().getTimes() %>回</td>
                 <td><%=s.getName() %></td>
-                <td class="p-score"><input class="p-score__input" type="number" class="form-control" value="<%=s.getScore().getRika() %>" min="0" max="100"></td>
-                <td class="p-score"><input class="p-score__input" type="number" class="form-control" value="<%=s.getScore().getKokugo() %>" min="0" max="100"></td>
-                <td class="p-score"><input class="p-score__input" type="number" class="form-control" value="<%=s.getScore().getEigo() %>" min="0" max="100"></td>
-                <td class="p-score"><input class="p-score__input" type="number" class="form-control" value="<%=s.getScore().getSyakai() %>" min="0" max="100"></td>
-                <td class="p-score"><input class="p-score__input" type="number" class="form-control" value="<%=s.getScore().getSugaku() %>" min="0" max="100"></td>
+                <td class="p-score"><input class="p-score__input" type="number" class="form-control" value="<%=s.getScore().getRika() %>" min="0" max="100" name="rika<%=s.getId()%>"></td>
+                <td class="p-score"><input class="p-score__input" type="number" class="form-control" value="<%=s.getScore().getKokugo() %>" min="0" max="100" name="kokugo<%=s.getId()%>"></td>
+                <td class="p-score"><input class="p-score__input" type="number" class="form-control" value="<%=s.getScore().getEigo() %>" min="0" max="100"  name="eigo<%=s.getId()%>"></td>
+                <td class="p-score"><input class="p-score__input" type="number" class="form-control" value="<%=s.getScore().getSyakai() %>" min="0" max="100"  name="syakai<%=s.getId()%>"></td>
+                <td class="p-score"><input class="p-score__input" type="number" class="form-control" value="<%=s.getScore().getSugaku() %>" min="0" max="100"  name="sugaku<%=s.getId()%>"></td>
             </tr>
              <%  } %>
         </table>
@@ -45,7 +46,8 @@
         </div>
         <!-- 更新ボタン -->
         <div class="p-register-btn">
-            <a href="score_comp.jsp"><button type="button" class="c-btn c-btn--register">更新</button></a>
+            <button type="submit" class="c-btn c-btn--register">更新</button>
         </div>
     </div>
+ </form>
 <%@include file="../footer.html" %>
