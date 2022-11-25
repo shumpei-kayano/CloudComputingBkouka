@@ -7,7 +7,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 /**
  * Servlet implementation class ToScore
  */
@@ -27,6 +26,25 @@ public class ToScore extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+//		----------------成績表データ生成処理----------------
+//		int j = 91;
+//for(int i=211;i<=240;i++){
+//	Random rand = new Random();
+//	int num1 = rand.nextInt(100);
+//	int num2 = rand.nextInt(100);
+//	int num3 = rand.nextInt(100);
+//	int num4 = rand.nextInt(100);
+//	int num5 = rand.nextInt(100);
+//	int num1 = 0;
+//	int num2 =0;
+//	int num3 =0;
+//	int num4 = 0;
+//	int num5 = 0;
+//	System.out.println("insert into score values("+i+","+ j+",1,"+ num1+"," +num2+","+ num3+","+ num4+","+ num5+");");
+//	j++;
+//}
+
 		request.getRequestDispatcher("/score/score_search.jsp")
 		.forward(request, response);
 	}
