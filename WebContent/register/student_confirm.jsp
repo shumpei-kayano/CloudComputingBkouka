@@ -12,10 +12,6 @@
                 <td><%= request.getParameter("year") %></td>
             </tr>
             <tr>
-                <td>クラス</td>
-                <td><%= request.getParameter("class") %></td>
-            </tr>
-            <tr>
                 <td>学生氏名</td>
                 <td><%= request.getParameter("name") %></td>
             </tr>
@@ -30,7 +26,6 @@
         <!-- 登録ボタン -->
         <form action="/kouka/register" method="post">
         	<input type="hidden" value="<%= request.getParameter("year") %>" name="year">
-        	<input type="hidden" value="<%= request.getParameter("class") %>" name="class">
         	<input type="hidden" value="<%= request.getParameter("name") %>" name="name">
 	        <div class="p-register-btn">
 	            <button type="submit" class="c-btn c-btn--register">登録</button>

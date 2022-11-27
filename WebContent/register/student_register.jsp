@@ -20,12 +20,6 @@
                 }
                 %>
             </select>
-            <!-- クラスセレクトボックス -->
-            <select class="form-select form-select-lg mb-5" aria-label="Default select example" name="class" required>
-                <option selected>クラスを選択してください</option>
-                <option value="情報IT１年生">情報IT１年生</option>
-                <option value="情報IT２年生">情報IT２年生</option>
-                </select>
             <!-- 学生氏名フォーム -->
             <div class="input-group flex-nowrap mb-5 p-student-form">
                 <span class="input-group-text" id="addon-wrapping">学生氏名</span>

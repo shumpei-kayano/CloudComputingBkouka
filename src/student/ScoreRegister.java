@@ -47,7 +47,11 @@ public class ScoreRegister extends HttpServlet {
 			int count = Integer.parseInt(request.getParameter("count"));
 			//	成績データの取得と登録処理
 			for(int i = 1; i<=count; i++){
-
+				String a = "id" + i;
+				if(request.getParameter(a) == null) {
+					  String url = "/kouka/error";
+					  response.sendRedirect(url);
+				}
 				int id = Integer.parseInt(request.getParameter("id"+i));
 				int rika = Integer.parseInt(request.getParameter("rika"+i));
 				int kokugo = Integer.parseInt(request.getParameter("kokugo"+i));
