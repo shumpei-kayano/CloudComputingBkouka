@@ -9,6 +9,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import bean.Score;
+import dao.ScoreDAO;
+
 /**
  * Servlet implementation class ScoreRegister
  */
@@ -36,14 +39,33 @@ public class ScoreRegister extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		request.setCharacterEncoding("utf-8");
 		response.setCharacterEncoding("UTF-8");
-		response.setContentType("UTF-8");
 		//		PrintWriterよりも前にutf変換しないと？に文字化けする
 		PrintWriter out=response.getWriter();
 		try {
-			request.getRequestDispatcher("/score/comp.jsp")
+			//成績リストの要素数を取得
+			int count = Integer.parseInt(request.getParameter("count"));
+			//	成績データの取得と登録処理
+			for(int i = 1; i<=count; i++){
+
+				int id = Integer.parseInt(request.getParameter("id"+i));
+				int rika = Integer.parseInt(request.getParameter("rika"+i));
+				int kokugo = Integer.parseInt(request.getParameter("kokugo"+i));
+				int eigo = Integer.parseInt(request.getParameter("eigo"+i));
+				int syakai = Integer.parseInt(request.getParameter("syakai"+i));
+				int sugaku =Integer.parseInt(request.getParameter("sugaku"+i));
+
+				Score sc = new Score();
+				sc.setId(id);
+				sc.setRika(rika);
+				sc.setKokugo(kokugo);
+				sc.setEigo(eigo);
+				sc.setSyakai(syakai);
+				sc.setSugaku(sugaku);
+				ScoreDAO dao=new ScoreDAO();
+				dao.scoreUpdate(sc);
+			}
+			request.getRequestDispatcher("/score/score_comp.jsp")
 			.forward(request, response);
 		} catch (Exception e) {
 			e.printStackTrace(out);

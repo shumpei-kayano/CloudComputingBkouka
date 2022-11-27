@@ -9,6 +9,6 @@
 
     <!-- 戻るボタン -->
     <div class="p-back-btn">
-        <a href="score_list.jsp"><button type="button" class="c-btn c-btn--back">戻る</button></a>
+        <a href="/kouka/score"><button type="button" class="c-btn c-btn--back">戻る</button></a>
     </div>
 <%@include file="../footer.html" %>

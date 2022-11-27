@@ -39,6 +39,7 @@ public class ScoreDAO extends DAO {
 				if(rs1.getInt("id") == rs2.getInt("student_id")){
 					Score sc=new Score();
 					sc.setStudentId(rs1.getInt("id"));
+					sc.setId(rs2.getInt("id"));
 					sc.setTimes(times);
 					sc.setRika(rs2.getInt("rika"));
 					sc.setKokugo(rs2.getInt("kokugo"));
@@ -80,68 +81,28 @@ public class ScoreDAO extends DAO {
 		return list;
 	}
 
-	// ---------挿入を行うinsertメソッド---------
-	public int insert(Student student) throws Exception {
+	// ---------更新を行うscoreUpdateメソッド---------
+	public int scoreUpdate(Score sc) throws Exception {
 		Connection con=getConnection();
 
-		PreparedStatement st1 = con.prepareStatement("select * from student");
-		ResultSet rs =st1.executeQuery();
-		//挿入の最終行を取得
-		rs.last();
-//		最終行+1の行番号を設定
-		int number_of_row = rs.getRow() + 1;
-		String name = student.getName();
-//		nameをUTF-8に変換
-		String cname = new String(name.getBytes("UTF-8"), "UTF-8");
+//		String name = student.getName();
+////		nameをUTF-8に変換
+//		String cname = new String(name.getBytes("UTF-8"), "UTF-8");
 //		プリペアドステートメントの作成
-		PreparedStatement st2=con.prepareStatement("insert into student values(?, ?, ?)");
+		PreparedStatement st=con.prepareStatement("UPDATE score SET rika = ?, kokugo = ? , eigo = ?, syakai = ?, sugaku = ? where id = ?");
 //		値のバインド
-		st2.setInt(1, number_of_row);
-		st2.setString(2, cname);
-		st2.setInt(3, student.getYear());
-		int line=st2.executeUpdate();
-
-		st1.close();
-		st2.close();
-		con.close();
-		return line;
-	}
-
-	// ----------１学生削除のdeleteメソッド---------
-	public void delete(int id) throws Exception {
-		//親のDAOクラスを利用してDB接続
-		Connection con=getConnection();
-
-		//SQLの実行
-		PreparedStatement st=con.prepareStatement("delete from student where id = ?");
-		//1番目のプレースホルダーにバインド
-		st.setInt(1, id);
-		st.executeUpdate();
-
-		//DBからの切断
-		st.close();
-		con.close();
-
-	}
-
-	// ---------更新を行うupdateメソッド---------
-	public int update(Student student) throws Exception {
-		Connection con=getConnection();
-
-		String name = student.getName();
-//		nameをUTF-8に変換
-		String cname = new String(name.getBytes("UTF-8"), "UTF-8");
-//		プリペアドステートメントの作成
-		PreparedStatement st=con.prepareStatement("UPDATE student SET student_name = ?, entrance_year = ? where id = ?");
-//		値のバインド
-		st.setString(1, cname);
-		st.setInt(2, student.getYear());
-		st.setInt(3, student.getId());
+		st.setInt(1, sc.getRika());
+		st.setInt(2, sc.getKokugo());
+		st.setInt(3, sc.getEigo());
+		st.setInt(4, sc.getSyakai());
+		st.setInt(5, sc.getSugaku());
+		st.setInt(6, sc.getId());
 
 		int line=st.executeUpdate();
 
 		st.close();
 		con.close();
+
 		return line;
 	}
 }

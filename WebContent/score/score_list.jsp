@@ -21,31 +21,41 @@
                 <th>社会</th>
                 <th>数学</th>
             </tr>
+            <%! int count; %>
    <%
             /* サーブレットからgetAttributeで成績リストを受け取る */
-            List<Student> list = (List<Student>)request.getAttribute("list");%>
-           <% for(Student s: list) { %>
+            List<Student> list = (List<Student>)request.getAttribute("list");
+   			count = list.size();
+            %>
+			<%! int i=1; %>
+           <% for(Student s: list) {%>
             <tr>
                 <td><%=s.getYear() %></td>
                 <td>第<%=s.getScore().getTimes() %>回</td>
                 <td><%=s.getName() %></td>
-                <td class="p-score"><input class="p-score__input" type="number" class="form-control" value="<%=s.getScore().getRika() %>" min="0" max="100" name="rika<%=s.getId()%>"></td>
-                <td class="p-score"><input class="p-score__input" type="number" class="form-control" value="<%=s.getScore().getKokugo() %>" min="0" max="100" name="kokugo<%=s.getId()%>"></td>
-                <td class="p-score"><input class="p-score__input" type="number" class="form-control" value="<%=s.getScore().getEigo() %>" min="0" max="100"  name="eigo<%=s.getId()%>"></td>
-                <td class="p-score"><input class="p-score__input" type="number" class="form-control" value="<%=s.getScore().getSyakai() %>" min="0" max="100"  name="syakai<%=s.getId()%>"></td>
-                <td class="p-score"><input class="p-score__input" type="number" class="form-control" value="<%=s.getScore().getSugaku() %>" min="0" max="100"  name="sugaku<%=s.getId()%>"></td>
+                <td class="p-score"><input class="p-score__input" type="number" class="form-control" value="<%=s.getScore().getRika() %>" min="0" max="100" name="rika<%=i%>"></td>
+                <td class="p-score"><input class="p-score__input" type="number" class="form-control" value="<%=s.getScore().getKokugo() %>" min="0" max="100" name="kokugo<%=i%>"></td>
+                <td class="p-score"><input class="p-score__input" type="number" class="form-control" value="<%=s.getScore().getEigo() %>" min="0" max="100"  name="eigo<%=i%>"></td>
+                <td class="p-score"><input class="p-score__input" type="number" class="form-control" value="<%=s.getScore().getSyakai() %>" min="0" max="100"  name="syakai<%=i%>"></td>
+                <td class="p-score"><input class="p-score__input" type="number" class="form-control" value="<%=s.getScore().getSugaku() %>" min="0" max="100"  name="sugaku<%=i%>"></td>
             </tr>
-             <%  } %>
+             <%  i ++;  } %>
         </table>
     </div>
 
-    <div class="c-flex-container">
+    <div class="c-flex-container" style="margin-bottom:100px">
         <!-- 戻るボタン -->
         <div class="p-back-btn">
+
             <a href="/kouka/score"><button type="button" class="c-btn c-btn--back">戻る</button></a>
         </div>
         <!-- 更新ボタン -->
         <div class="p-register-btn">
+        	<%! int j =1; %>
+        	<% for(Student s: list) {%>
+        		<input type="hidden" value="<%= s.getScore().getId() %>" name="id<%=j%>">
+        	<%  j ++;  } %>
+        	<input type="hidden" value="<%=count %>" name="count">
             <button type="submit" class="c-btn c-btn--register">更新</button>
         </div>
     </div>
