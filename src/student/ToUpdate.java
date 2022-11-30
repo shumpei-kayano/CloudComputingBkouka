@@ -39,11 +39,6 @@ public class ToUpdate extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//post送信されたリクエスト情報をutf-8にエンコード
-		request.setCharacterEncoding("utf-8");
-		response.setCharacterEncoding("UTF-8");
-		response.setContentType("UTF-8");
-		//		PrintWriterよりも前にutf変換しないと？に文字化けする
 		PrintWriter out=response.getWriter();
 		try{
 				String name = request.getParameter("name");

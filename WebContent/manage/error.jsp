@@ -1,5 +1,4 @@
 <%@page contentType="text/html; charset=UTF-8" %>
-<% request.setCharacterEncoding("UTF-8"); %>
 <%@include file="../header.jsp" %>
     <div class="c-pagetitle">
        <h1><a href="/kouka">エラー</a></h1>

@@ -2,7 +2,10 @@
 <%@ page import="java.io.*,java.util.*" %>
 <%@ page import="javax.servlet.*,java.text.*" %>
 <%!  Date today = new Date(); %>
-<% int year = today.getYear() + 1900; %>
+<%
+/* @SuppressWarningsアノテーションで非推奨のメンバー利用の警告をなくす */
+@SuppressWarnings("deprecation")
+int year = today.getYear() + 1900; %>
 <%@include file="../header.jsp" %>
     <div class="c-pagetitle">
         <h1 class=""><a href="/kouka">学生照会</a></h1>

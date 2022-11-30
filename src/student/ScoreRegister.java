@@ -39,8 +39,6 @@ public class ScoreRegister extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		response.setCharacterEncoding("UTF-8");
-		//		PrintWriterよりも前にutf変換しないと？に文字化けする
 		PrintWriter out=response.getWriter();
 		try {
 			//成績リストの要素数を取得

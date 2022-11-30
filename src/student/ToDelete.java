@@ -37,10 +37,6 @@ public class ToDelete extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		request.setCharacterEncoding("utf-8");
-		response.setCharacterEncoding("UTF-8");
-		response.setContentType("UTF-8");
 		int id = Integer.parseInt(request.getParameter("id"));
 		int year = Integer.parseInt(request.getParameter("year"));
 		StudentDAO dao=new StudentDAO();

@@ -35,8 +35,6 @@ public class ToConfirm2 extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		request.setCharacterEncoding("UTF-8");
 		request.getRequestDispatcher("/manage/student_confirm2.jsp")
 				.forward(request, response);
 	}

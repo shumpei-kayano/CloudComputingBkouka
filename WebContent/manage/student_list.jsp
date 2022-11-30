@@ -16,7 +16,9 @@
                 <th width="20%"></th>
             </tr>
             <%
-            /* サーブレットからgetAttributeで学生リストを受け取る */
+            /* サーブレットからgetAttributeで学生リストを受け取る
+           @SuppressWarningsアノテーションでジェネリックスの型変換の警告をなくす */
+            @SuppressWarnings("unchecked")
             List<Student> list = (List<Student>)request.getAttribute("list");%>
            <% for(Student s: list) { %>
 

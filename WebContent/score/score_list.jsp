@@ -24,6 +24,8 @@
             <%! int count; %>
    <%
             /* サーブレットからgetAttributeで成績リストを受け取る */
+            /* @SuppressWarningsアノテーションでジェネリックスによる型変換の警告をなくす */
+			@SuppressWarnings("unchecked")
             List<Student> list = (List<Student>)request.getAttribute("list");
    			count = list.size();
             %>

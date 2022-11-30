@@ -3,7 +3,10 @@
 <%@ page import="java.io.*,java.util.*" %>
 <%@ page import="javax.servlet.*,java.text.*" %>
 <%!  Date today = new Date(); %>
-<% int year = today.getYear() + 1900; %>
+<%
+/* @SuppressWarningsアノテーションで非推奨のメンバー利用の警告をなくす */
+@SuppressWarnings("deprecation")
+int year = today.getYear() + 1900; %>
     <div class="c-pagetitle">
         <h1 class=""><a href="/kouka">学生登録</a></h1>
     </div>
