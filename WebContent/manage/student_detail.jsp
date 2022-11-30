@@ -1,6 +1,4 @@
 <%@page contentType="text/html; charset=UTF-8" %>
-<%@page import="bean.Student" %>
-<%@page import="dao.StudentDAO" %>
 <% request.setCharacterEncoding("UTF-8"); %>
 <%@include file="../header.jsp" %>
     <!-- 削除の確認コンソール -->
@@ -16,9 +14,10 @@
     <div class="c-pagetitle">
         <h1 class=""><a href="/kouka">学生詳細 </a></h1>
     </div>
-            <%
-            /* サーブレットからgetAttributeで学生情報を受け取る */
-           Student s = (Student)request.getAttribute("s");%>
+
+			<!-- jspのアクションタグでbeanの取得 -->
+           <jsp:useBean id="s"  class="bean.Student" scope="request"/>
+
     <form action="/kouka/manage/confirm" method="post">
         <div class="c-container c-container--tate">
             <!-- 入学年度セレクトボックス -->
@@ -33,9 +32,9 @@
             <div class="input-group flex-nowrap mb-5 p-student-form">
                 <span class="input-group-text" id="addon-wrapping">学生氏名</span>
                 <input type="text" class="form-control" placeholder="大原 太郎" aria-label="Username"
-                    aria-describedby="addon-wrapping" value="<%= s.getName()%>" name="name">
+                    aria-describedby="addon-wrapping" value="<jsp:getProperty name="s" property="name" />" name="name">
             </div>
-            <input type="hidden" value="<%= s.getId() %>" name="id">
+            <input type="hidden" value="<jsp:getProperty name="s" property="id" />" name="id">
             <!-- 確認ボタン -->
 	        <div class="p-register-btn" style="text-align:right;margin-right:0">
 	            <button type="submit" class="c-btn c-btn--register">確認</button>
@@ -47,15 +46,15 @@
         <!-- 戻るボタン -->
         <form action="/kouka/manage/list" method="post">
 	        <div class="p-back-btn">
-	        	<input type="hidden" value="<%= s.getYear() %>" name="year">
+	        	<input type="hidden" value="<jsp:getProperty name="s" property="year" />" name="year">
 				<button type="submit" class="c-btn c-btn--back">戻る</button>
 	        </div>
         </form>
         <!-- 削除ボタン -->
         <form action="/kouka/manage/del" method="post" onsubmit="return beforeSubmit()">
 	        <div class="p-back-btn" style="margin-right:318px">
-		        <input type="hidden" value="<%= s.getId() %>" name="id">
-		        <input type="hidden" value="<%= s.getYear() %>" name="year">
+		        <input type="hidden" value="<jsp:getProperty name="s" property="id" />" name="id">
+		        <input type="hidden" value="<jsp:getProperty name="s" property="year" />" name="year">
 	            <button type="submit" class="c-btn c-btn--back">削除</button>
 	        </div>
         </form>
