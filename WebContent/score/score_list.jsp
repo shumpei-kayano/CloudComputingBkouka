@@ -11,6 +11,19 @@
    <form action="/kouka/score/register" method="post">
     <div class="c-container--table">
         <table class="table table-striped">
+           <%
+            /* サーブレットからgetAttributeで成績リストを受け取る */
+            /* @SuppressWarningsアノテーションでジェネリックスによる型変換の警告をなくす */
+			@SuppressWarnings("unchecked")
+            List<Student> list = (List<Student>)request.getAttribute("list");
+   			count = list.size();
+            %>
+
+            <%
+            /* すみません。本来ならばテストテーブルと成績テーブルを作成しての実装にすべきですが*/
+           /* ５科目で２年間分の成績と思っておりました。１０科目とのことでハリボテ実装しました。。。*/
+            if(list.get(0).getScore().getTimes() == 1){
+            %>
             <tr>
                 <th>入学年度</th>
                 <th>回数</th>
@@ -21,14 +34,19 @@
                 <th>社会</th>
                 <th>数学</th>
             </tr>
+            <% } else {%>
+                        <tr>
+                <th>入学年度</th>
+                <th>回数</th>
+                <th>氏名</th>
+                <th>物理</th>
+                <th>化学</th>
+                <th>生物</th>
+                <th>古文</th>
+                <th>世界史</th>
+            </tr>
+            <% } %>
             <%! int count; %>
-   <%
-            /* サーブレットからgetAttributeで成績リストを受け取る */
-            /* @SuppressWarningsアノテーションでジェネリックスによる型変換の警告をなくす */
-			@SuppressWarnings("unchecked")
-            List<Student> list = (List<Student>)request.getAttribute("list");
-   			count = list.size();
-            %>
 			<%! int i=1; %>
            <% for(Student s: list) {%>
             <tr>

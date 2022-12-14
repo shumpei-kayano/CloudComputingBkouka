@@ -11,7 +11,7 @@ import bean.Student;
 
 public class ScoreDAO extends DAO {
 
-	// ----------指定年度学生取得のscoreSelectメソッド---------
+	// ----------指定年度学生成績一覧取得のscoreSelectメソッド---------
 	public List<Student> scoreSelect(int entranceYear, int times) throws Exception {
 		//StudentBeanを利用してStudent型の配列を作成
 		List<Student> list=new ArrayList<>();
